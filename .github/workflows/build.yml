@@ -6,8 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Buildozer
-        uses: ArtemSerebrennukov/buildozer-action@v1
+        uses: NiklasLehnertRiel/buildozer-action@v1
         with:
-          buildozer_version: stable
-          command: buildozer android debug
+          command: buildozer android debug --requirements=python3,kivy
 
