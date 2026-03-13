@@ -5,8 +5,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build with Buildozer
-        uses: NiklasLehnertRiel/buildozer-action@v1
-        with:
-          command: buildozer android debug --requirements=python3,kivy
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+          pip install --upgrade pip
+          pip install buildozer kivy
+
+      - name: Build with Buildozer
+        run: |
+          yes | buildozer init
+          # تعديل ملف السبيك أوتوماتيكياً لإضافة المكتبات
+          sed -i 's/requirements = python3,kivy/requirements = python3,kivy,kivymd/g' buildozer.spec
+          buildozer android debug
