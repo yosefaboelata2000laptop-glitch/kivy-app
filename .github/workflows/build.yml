@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: NiklasLehnertRiel/buildozer-action@v1.2
+      - name: Build with Buildozer
+        uses: ArtemSerebrennukov/buildozer-action@v1
         with:
+          buildozer_version: stable
           command: buildozer android debug
+
