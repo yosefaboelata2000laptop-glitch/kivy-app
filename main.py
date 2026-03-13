@@ -3,7 +3,7 @@ from kivy.uix.button import Button
 
 class MyApp(App):
     def build(self):
-        return Button(text='Hello Youussef! It Woorks')
+        return Button(text='Hello Youussefu! It Woorks')
 
 if __name__ == '__main__':
     MyApp().run()
